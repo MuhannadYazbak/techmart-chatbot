@@ -1,9 +1,15 @@
 import express from 'express';
 
 const app = express();
+const cors = require('cors');
+app.use(cors({
+    origin: 'http://localhost:3000', // allow your frontend
+    methods: ['POST', 'GET'],        // specify allowed methods if needed
+    credentials: true                // if you're using cookies or auth headers
+}));
 app.use(express.json());
 
-app.post('/chat', (req, res) => {
+app.post('/chat', (req: any, res: any) => {
     const msg = req.body.message.toLowerCase();
 
     let reply = '🤖 Sorry, I didn’t understand that.';
