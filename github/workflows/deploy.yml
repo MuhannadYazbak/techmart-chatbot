@@ -1,0 +1,20 @@
+name: Deploy Chatbot
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: docker build -t techmart-chatbot .
+
+      # Optional: Push to DockerHub or internal registry
+
+      #- name: Deploy to Kubernetes
+      #  run: kubectl apply -f k8s/deployment.yaml
